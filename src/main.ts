@@ -13,7 +13,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bufferLogs: false,
   });
-
+  app.enableCors({
+    origin: 'http://localhost:5000',
+    methods: 'GET, POST, PUT, DELETE, PATCH',
+    allowedHeaders: 'Content-Type, Authorization',
+  });
   // for uploading base64 files
   app.use(bodyParser.json({ limit: '20mb' }));
 
